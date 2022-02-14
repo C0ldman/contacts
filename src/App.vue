@@ -1,19 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div id="nav">
+      <UserList class="userList" :users="users"></UserList>
+      <router-view>
+        <UserInfo></UserInfo>
+      </router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import UserList from "@/components/userList";
+import UserInfo from "@/components/userInfo";
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    UserList,
+    UserInfo
+  },
+  data() {
+    return {
+      users: []
+    };
+  },
+  methods: {
+    getUsers() {
+      this.axios.get('user?limit=15',{headers: {'app-id': '6209695067b8384c09e46a19'}})
+      .then((response)=>this.users=response.data.data)
+    }
+  },
+  created() {
+    this.getUsers();
   }
-}
+};
 </script>
 
 <style>
@@ -21,8 +39,15 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  display: flex;
+}
+
+.userList {
+  width: 30%;
+  margin-right: 10px;
 }
 </style>
