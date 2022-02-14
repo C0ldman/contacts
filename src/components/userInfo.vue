@@ -33,9 +33,13 @@ export default {
     this.isLoading=true;
     try {
       this.axios.get(to.path, {headers: {'app-id': '6209695067b8384c09e46a19'}})
-          .then((response) => this.user = response.data);
+          .then((response) => {
+            if(response.status === 200){
+              this.user = response.data
+            }
+          });
     } catch (e) {
-      this.error = e;
+      console.log('e:', e);
     } finally {
       this.isLoading=false;
     }
@@ -46,7 +50,7 @@ export default {
 
 <style scoped>
 .user_container__title {
-  font-family: Arial;
+  font-family: Helvetica,Arial;
   font-weight: bold;
 }
 </style>

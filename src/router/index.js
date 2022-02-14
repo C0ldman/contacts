@@ -6,10 +6,10 @@ Vue.use(VueRouter)
 
 const routes = [
     {
-      path: '/user/:id',
+        path: '/user/:id',
         name: 'UserInfo',
         component: UserInfo
-    },
+    }
 ]
 
 const router = new VueRouter({

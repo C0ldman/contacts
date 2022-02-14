@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     getUsers() {
-      this.axios.get('user?limit=15',{headers: {'app-id': '6209695067b8384c09e46a19'}})
+      this.axios.get('user?limit=10',{headers: {'app-id': '6209695067b8384c09e46a19'}})
       .then((response)=>this.users=response.data.data)
     }
   },
